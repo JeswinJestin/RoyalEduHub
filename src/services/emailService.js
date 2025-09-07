@@ -11,7 +11,7 @@ import { submitWithEmailFallback, generateMailtoLink } from './emailNotification
 export const submitToGoogleForms = async (formData) => {
   try {
     // Google Forms URL - using the correct prefill URL provided by user
-    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/1V2j0m9NXtyilFVOh2Zr4DanRer0rLwA8PG9hNsSZgRw/formResponse';
+    // const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/1V2j0m9NXtyilFVOh2Zr4DanRer0rLwA8PG9hNsSZgRw/formResponse';
     
     // Submitting to Google Forms
     
@@ -31,11 +31,11 @@ export const submitToGoogleForms = async (formData) => {
     // FormData prepared for submission
     
     // Submit to Google Forms
-    const response = await fetch(GOOGLE_FORM_URL, {
-      method: 'POST',
-      mode: 'no-cors', // Required for Google Forms
-      body: formDataToSubmit
-    });
+    // const response = await fetch(GOOGLE_FORM_URL, {
+    //   method: 'POST',
+    //   mode: 'no-cors', // Required for Google Forms
+    //   body: formDataToSubmit
+    // });
     
     // Response received from Google Forms
     
