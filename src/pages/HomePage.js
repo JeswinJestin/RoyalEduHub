@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/sections/Hero';
 import Courses from '../components/sections/Courses';
@@ -10,6 +10,45 @@ import Section3D from '../components/animations/Section3D';
 import ParallaxBackground from '../components/animations/ParallaxBackground';
 
 const HomePage = () => {
+  // Performance optimization: reduce animations on low-end devices
+  const shouldUseHeavyAnimations = useMemo(() => {
+    // Check for reduced motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return false;
+    }
+    
+    // Check device capabilities
+    const isMobile = window.innerWidth < 768;
+    const isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+    
+    return !isMobile && !isLowEndDevice;
+  }, []);
+
+  // Wrapper component for conditional animations
+  const ConditionalWrapper = ({ children, useParallax = false, useSection3D = false }) => {
+    if (!shouldUseHeavyAnimations) {
+      return <div className="relative">{children}</div>;
+    }
+    
+    let content = children;
+    if (useSection3D) {
+      content = (
+        <Section3D animationType="fadeInUp" delay={0.1}>
+          {content}
+        </Section3D>
+      );
+    }
+    if (useParallax) {
+      content = (
+        <ParallaxBackground offset={20}>
+          {content}
+        </ParallaxBackground>
+      );
+    }
+    
+    return content;
+  };
+
   return (
     <div className="min-h-screen bg-blue-black relative overflow-visible">
       {/* Hero Section - No animation wrapper needed */}
@@ -17,50 +56,40 @@ const HomePage = () => {
         <Hero />
       </section>
 
-      {/* Stats Section with pop-out animation and mild parallax depth */}
-      <ParallaxBackground offset={20}>
-        <Section3D animationType="scaleIn" delay={0.2}>
-          <section id="stats" className="relative bg-gradient-dark">
-            <Stats />
-          </section>
-        </Section3D>
-      </ParallaxBackground>
+      {/* Stats Section with conditional animations */}
+      <ConditionalWrapper useParallax={true} useSection3D={true}>
+        <section id="stats" className="relative bg-gradient-dark">
+          <Stats />
+        </section>
+      </ConditionalWrapper>
 
-      {/* Courses Section with enhanced prominence and parallax depth */}
-      <ParallaxBackground offset={35}>
-        <Section3D animationType="fadeInUp" delay={0.1} className="w-full">
-          <section id="courses" className="relative w-full overflow-visible bg-gradient-to-br from-slate-900/50 to-slate-800/50" style={{ zIndex: 'auto' }}>
-            <Courses />
-          </section>
-        </Section3D>
-      </ParallaxBackground>
+      {/* Courses Section with conditional animations */}
+      <ConditionalWrapper useParallax={true} useSection3D={true}>
+        <section id="courses" className="relative w-full overflow-visible bg-gradient-to-br from-slate-900/50 to-slate-800/50" style={{ zIndex: 'auto' }}>
+          <Courses />
+        </section>
+      </ConditionalWrapper>
 
-      {/* Testimonials Section with 3D rotation and subtle parallax */}
-      <ParallaxBackground offset={25}>
-        <Section3D animationType="rotateIn" delay={0.2}>
-          <section id="testimonials" className="relative">
-            <Testimonials />
-          </section>
-        </Section3D>
-      </ParallaxBackground>
+      {/* Testimonials Section with conditional animations */}
+      <ConditionalWrapper useParallax={true} useSection3D={true}>
+        <section id="testimonials" className="relative">
+          <Testimonials />
+        </section>
+      </ConditionalWrapper>
 
-      {/* Why Choose Us Section with slide-in animation and parallax */}
-      <ParallaxBackground offset={20}>
-        <Section3D animationType="fadeInUp" delay={0.1}>
-          <section id="why-choose-us" className="relative">
-            <WhyChooseUs />
-          </section>
-        </Section3D>
-      </ParallaxBackground>
+      {/* Why Choose Us Section with conditional animations */}
+      <ConditionalWrapper useParallax={true} useSection3D={true}>
+        <section id="why-choose-us" className="relative">
+          <WhyChooseUs />
+        </section>
+      </ConditionalWrapper>
 
-      {/* Contact Section with parallax effect - No padding to create seamless flow */}
-      <ParallaxBackground offset={30}>
-        <Section3D animationType="parallax3D" delay={0.1}>
-          <section id="contact" className="relative">
-            <Contact />
-          </section>
-        </Section3D>
-      </ParallaxBackground>
+      {/* Contact Section with conditional animations */}
+      <ConditionalWrapper useParallax={true} useSection3D={true}>
+        <section id="contact" className="relative">
+          <Contact />
+        </section>
+      </ConditionalWrapper>
 
       {/* Floating transition elements between sections, placed on a higher-depth parallax layer */}
       <ParallaxBackground offset={60}>

@@ -248,6 +248,92 @@ const AboutPage = () => {
                 </div>
               </div>
             </motion.div>
+
+            {/* Company Work Environment Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="max-w-6xl mx-auto mt-16"
+            >
+              <div className="text-center mb-12">
+                <h3 className="text-h2 text-white mb-4">
+                  Our{" "}
+                  <span className="brand-gradient">
+                    Work Environment
+                  </span>
+                </h3>
+                <p className="text-body-primary text-white/80 max-w-2xl mx-auto">
+                  Experience the collaborative and innovative workspace where our team creates exceptional educational experiences.
+                </p>
+              </div>
+
+              {/* Work Environment Grid */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Culture Highlights */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-orange-500/30 transition-all duration-300"
+                >
+                  <div className="flex items-center mb-4">
+                    <Heart className="w-6 h-6 text-orange-500 mr-3" />
+                    <h4 className="text-white font-semibold text-lg">Collaborative Culture</h4>
+                  </div>
+                  <p className="text-white/80 text-sm leading-relaxed">
+                    Our open workspace fosters creativity and teamwork, where every voice is heard and innovation thrives.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-orange-500/30 transition-all duration-300"
+                >
+                  <div className="flex items-center mb-4">
+                    <Zap className="w-6 h-6 text-orange-500 mr-3" />
+                    <h4 className="text-white font-semibold text-lg">Innovation Hub</h4>
+                  </div>
+                  <p className="text-white/80 text-sm leading-relaxed">
+                    State-of-the-art technology and modern facilities enable our team to develop cutting-edge educational solutions.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                  className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-orange-500/30 transition-all duration-300 md:col-span-2 lg:col-span-1"
+                >
+                  <div className="flex items-center mb-4">
+                    <Target className="w-6 h-6 text-orange-500 mr-3" />
+                    <h4 className="text-white font-semibold text-lg">Growth Mindset</h4>
+                  </div>
+                  <p className="text-white/80 text-sm leading-relaxed">
+                    We believe in continuous learning and professional development, creating an environment where everyone can excel.
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Workspace Values */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 1.1 }}
+                className="mt-8 bg-gradient-to-r from-orange-500/10 to-orange-600/10 backdrop-blur-sm rounded-xl p-8 border border-orange-500/20"
+              >
+                <div className="text-center">
+                  <h4 className="text-white font-bold text-xl mb-4">
+                    "Building Tomorrow's Education Today"
+                  </h4>
+                  <p className="text-white/90 text-base leading-relaxed max-w-3xl mx-auto">
+                    Our workspace reflects our commitment to excellence, innovation, and student success. Every corner of our office is designed to inspire creativity and foster the collaborative spirit that drives our mission forward.
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
