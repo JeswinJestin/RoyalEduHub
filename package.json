@@ -2,11 +2,11 @@
   "name": "royal-edu-hub-website",
   "version": "1.0.0",
   "description": "Modern 3D Interactive Educational Platform for Royal Edu Hub",
-
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@lottiefiles/dotlottie-react": "^0.15.1",
+    "@splinetool/react-spline": "^4.1.0",
     "@splinetool/runtime": "^0.9.508",
     "framer-motion": "^11.0.3",
     "lucide-react": "^0.323.0",

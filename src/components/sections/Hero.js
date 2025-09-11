@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Play, Star, MapPin, Rocket, GraduationCap } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Play,
+  Star,
+  MapPin,
+  Rocket,
+  GraduationCap,
+} from "lucide-react";
 
 const Hero = () => {
   const stats = [
-    { number: '5K+', label: 'Students Taught' },
-    { number: '3', label: 'Board Types' },
-    { number: '100%', label: 'Live Classes' },
+    { number: "5K+", label: "Students Taught" },
+    { number: "3", label: "Board Types" },
+    { number: "100%", label: "Live Classes" },
   ];
 
   // Background image crossfade (keeps same ratio/object-fit as first image)
-  const BASE_IMAGE = '/your-hero-image.jpg';
-  const ALT_IMAGE = '/your-hero-image-2.jpg'; // Optional second image (add to /public to enable)
+  const BASE_IMAGE = "/your-hero-image-2.webp";
+  const ALT_IMAGE = "/your-hero-image-2.webp"; // Optional second image (add to /public to enable)
   const [availableImages, setAvailableImages] = useState([BASE_IMAGE]);
   const [bgIndex, setBgIndex] = useState(0);
 
@@ -19,14 +26,20 @@ const Hero = () => {
   useEffect(() => {
     const img = new Image();
     img.src = ALT_IMAGE;
-    img.onload = () => setAvailableImages((prev) => (prev.includes(ALT_IMAGE) ? prev : [...prev, ALT_IMAGE]));
+    img.onload = () =>
+      setAvailableImages((prev) =>
+        prev.includes(ALT_IMAGE) ? prev : [...prev, ALT_IMAGE]
+      );
     // If it fails to load, we simply keep one image and no toggle is shown
   }, []);
 
   // Auto-rotate between images with a gentle fade when more than one is available
   useEffect(() => {
     if (availableImages.length < 2) return;
-    const id = setInterval(() => setBgIndex((i) => (i + 1) % availableImages.length), 7000);
+    const id = setInterval(
+      () => setBgIndex((i) => (i + 1) % availableImages.length),
+      7000
+    );
     return () => clearInterval(id);
   }, [availableImages.length]);
 
@@ -40,7 +53,7 @@ const Hero = () => {
             src={src}
             alt="Royal Edu Hub Background"
             className="absolute inset-0 w-full h-full object-cover"
-            style={{ objectPosition: '75% center' }}
+            style={{ objectPosition: "75% center" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: i === bgIndex ? 1 : 0 }}
             transition={{ duration: 0.8 }}
@@ -51,18 +64,17 @@ const Hero = () => {
 
         {/* Removed manual background toggle dots to rely on auto-fade */}
       </div>
-      
+
       {/* Main content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 sm:pt-24 sm:pb-12 lg:pt-32 lg:pb-16 flex flex-col justify-center min-h-screen hero-mobile-clean">
-         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
-           
-           {/* Left Column - Text Content */}
-           <motion.div
-             initial={{ opacity: 0, x: -50 }}
-             animate={{ opacity: 1, x: 0 }}
-             transition={{ duration: 0.8 }}
-             className="text-left hero-tablet-spacing"
-           >
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
+          {/* Left Column - Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-left hero-tablet-spacing"
+          >
             {/* Badge - hide on mobile */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -83,30 +95,38 @@ const Hero = () => {
               transition={{ duration: 0.8 }}
               className="text-h1 hero-title-mobile hero-title-shadow text-white mb-3 sm:mb-6 leading-tight clamp-2 mt-8 sm:mt-0 hero-content-mobile"
             >
-              <span>Transform Your</span>{' '}
-              <span className="block sm:inline brand-gradient">Academic Journey</span>
+              <span>Transform Your</span>{" "}
+              <span className="block sm:inline brand-gradient">
+                Academic Journey
+              </span>
             </motion.h1>
 
             {/* Subtext - visible on all screens, responsive text size */}
             <p className="text-gray-300 hero-subtitle-mobile text-xs sm:text-sm md:text-base mb-3 sm:mb-8 clamp-1 px-1 sm:px-0 hero-content-mobile">
-               100% Live classes by expert mentors · Grades 5–12
-             </p>
+              100% Live classes by expert mentors · Grades 5–12
+            </p>
 
             {/* Mobile: compact highlights and modality line per Figma */}
             <div className="sm:hidden space-y-2.5 text-gray-300 hero-bullets-mobile mb-6 mt-4 hero-content-mobile">
               <div className="flex items-center gap-2.5">
                 <span className="w-2 h-2 rounded-full bg-[#FF4500]/90"></span>
-                <span className="text-[15px] leading-relaxed">100% Live classes by expert mentors</span>
+                <span className="text-[15px] leading-relaxed">
+                  100% Live classes by expert mentors
+                </span>
               </div>
               <div className="flex items-center gap-2.5">
-                  <span className="w-2 h-2 rounded-full bg-[#FF4500]/90"></span>
-                  <span className="text-[15px] leading-relaxed">Aligned with CBSE, ICSE & State Syllabus</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <span className="w-2 h-2 rounded-full bg-[#FF4500]/90"></span>
+                <span className="w-2 h-2 rounded-full bg-[#FF4500]/90"></span>
+                <span className="text-[15px] leading-relaxed">
+                  Aligned with CBSE, ICSE & State Syllabus
+                </span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#FF4500]/90"></span>
                 <span className="text-[15px] leading-relaxed">Grades 5–12</span>
               </div>
-              <div className="pt-2 text-[13px] tracking-wider uppercase text-white/90 font-medium">Online | Offline Classes</div>
+              <div className="pt-2 text-[13px] tracking-wider uppercase text-white/90 font-medium">
+                Online | Offline Classes
+              </div>
             </div>
 
             {/* Detailed bullets and location - hide on mobile */}
@@ -120,11 +140,15 @@ const Hero = () => {
               <div className="flex items-start gap-3">
                 <Rocket className="w-5 h-5 text-[#FF4500] mt-1" />
                 <div>
-                  <h3 className="text-sm sm:text-base font-semibold text-white mb-1">Live Online Classes for Grades 5–12</h3>
+                  <h3 className="text-sm sm:text-base font-semibold text-white mb-1">
+                    Live Online Classes for Grades 5–12
+                  </h3>
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-2">
                       <ArrowRight className="w-3 h-3 text-[#FF4500]" />
-                      <span className="text-xs sm:text-sm text-gray-300">Aligned with CBSE, ICSE & State Syllabus</span>
+                      <span className="text-xs sm:text-sm text-gray-300">
+                        Aligned with CBSE, ICSE & State Syllabus
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -134,20 +158,28 @@ const Hero = () => {
               <div className="flex items-start gap-3 mt-3">
                 <GraduationCap className="w-5 h-5 text-[#FF4500] mt-1" />
                 <div>
-                  <h3 className="text-sm sm:text-base font-semibold text-white mb-1">Expert-led sessions by India's leading academic mentors</h3>
+                  <h3 className="text-sm sm:text-base font-semibold text-white mb-1">
+                    Expert-led sessions by India's leading academic mentors
+                  </h3>
                   {/* Sub-points */}
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-2">
                       <Play className="w-3 h-3 text-[#FF4500]" />
-                      <span className="text-xs sm:text-sm text-gray-300">100% Live & Interactive</span>
+                      <span className="text-xs sm:text-sm text-gray-300">
+                        100% Live & Interactive
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Star className="w-3 h-3 text-[#FF4500]" />
-                      <span className="text-xs sm:text-sm text-gray-300">5000+ Students Taught</span>
+                      <span className="text-xs sm:text-sm text-gray-300">
+                        5000+ Students Taught
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <ArrowRight className="w-3 h-3 text-[#FF4500]" />
-                      <span className="text-xs sm:text-sm text-gray-300">Covers 3 Major Boards</span>
+                      <span className="text-xs sm:text-sm text-gray-300">
+                        Covers 3 Major Boards
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -158,7 +190,9 @@ const Hero = () => {
             <div className="hidden md:flex items-start gap-3 mt-3 sm:mt-4 mb-4 sm:mb-6">
               <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#FF4500] mt-1" />
               <div>
-                <h3 className="text-sm sm:text-base font-medium text-white mb-1">Kochi | Alappuzha</h3>
+                <h3 className="text-sm sm:text-base font-medium text-white mb-1">
+                  Kochi | Alappuzha
+                </h3>
               </div>
             </div>
 
@@ -174,9 +208,9 @@ const Hero = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
-                  const contactSection = document.getElementById('contact');
+                  const contactSection = document.getElementById("contact");
                   if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                    contactSection.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
               >
@@ -184,27 +218,31 @@ const Hero = () => {
                 <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4" />
               </motion.button>
               {/* Secondary CTA visible on mobile (outline), stacked below primary */}
-               <motion.button
-                 className="flex btn-secondary btn-compact items-center justify-center gap-2 w-full sm:w-auto whitespace-nowrap"
-                 whileHover={{ scale: 1.05 }}
-                 whileTap={{ scale: 0.95 }}
-                 onClick={() => {
-                   const coursesSection = document.getElementById('courses');
-                   if (coursesSection) {
-                     coursesSection.scrollIntoView({ behavior: 'smooth' });
-                   }
-                 }}
-               >
-                 <Play className="w-4 h-4 sm:w-4 sm:h-4" />
-                 <span>Explore Courses</span>
-               </motion.button>
-             </motion.div>
+              <motion.button
+                className="flex btn-secondary btn-compact items-center justify-center gap-2 w-full sm:w-auto whitespace-nowrap"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  const coursesSection = document.getElementById("courses");
+                  if (coursesSection) {
+                    coursesSection.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              >
+                <Play className="w-4 h-4 sm:w-4 sm:h-4" />
+                <span>Explore Courses</span>
+              </motion.button>
+            </motion.div>
             {/* Mobile stats row - positioned lower on longer screens */}
             <div className="grid grid-cols-3 gap-4 max-w-sm sm:hidden mt-8 mb-2 hero-stats-mobile">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-lg font-bold brand-gradient mb-1">{stat.number}</div>
-                  <div className="text-gray-400 text-xs leading-snug">{stat.label}</div>
+                  <div className="text-lg font-bold brand-gradient mb-1">
+                    {stat.number}
+                  </div>
+                  <div className="text-gray-400 text-xs leading-snug">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -221,12 +259,13 @@ const Hero = () => {
                   <div className="text-lg sm:text-xl md:text-2xl font-bold brand-gradient mb-1">
                     {stat.number}
                   </div>
-                  <div className="text-gray-400 text-xs sm:text-sm">{stat.label}</div>
+                  <div className="text-gray-400 text-xs sm:text-sm">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </motion.div>
-         </motion.div>
-
+          </motion.div>
         </div>
       </div>
     </div>
