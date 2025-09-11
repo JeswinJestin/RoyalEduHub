@@ -21,10 +21,10 @@ const Courses = ({ hideHeader = false }) => {
     {
       id: 1,
       title: 'Class 5 to 8 – Foundation Courses',
-      description: 'Strong foundation building with comprehensive coverage of CBSE, ICSE & State Board curriculum. Focus on Maths, Science & Reasoning with fun, concept-based teaching approach.',
+      description: 'Strong foundation building with comprehensive coverage of CBSE, ICSE, ISC, NIOS & State Board curriculum. Focus on Maths, Science & Reasoning with fun, concept-based teaching approach.',
       icon: BookOpen,
       highlights: [
-        'Full CBSE, ICSE & State Board coverage',
+        'Full CBSE, ICSE, ISC, NIOS & State Board coverage',
         'Strong basics in Maths, Science & Reasoning',
         'Fun learning with concept-based teaching',
         'Logical thinking through activities & puzzles'
@@ -47,7 +47,7 @@ const Courses = ({ hideHeader = false }) => {
       description: 'Comprehensive board exam preparation with expert guidance. Specialized focus on Algebra, Trigonometry, Geometry & Science with regular mock tests and performance tracking.',
       icon: Award,
       highlights: [
-        'Full CBSE, ICSE & State Board coverage',
+        'Full CBSE, ICSE, ISC, NIOS & State Board coverage',
         'Focus on Algebra, Trigonometry, Geometry & Science',
         'Regular board-style mock tests'
       ],

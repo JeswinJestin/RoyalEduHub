@@ -5,7 +5,7 @@ import { ArrowRight, Play, Star, MapPin, Rocket, GraduationCap } from 'lucide-re
 const Hero = () => {
   const stats = [
     { number: '5K+', label: 'Students Taught' },
-    { number: '3+', label: 'Board Types' },
+    { number: '5+', label: 'Board Types' },
     { number: '100%', label: 'Live Classes' },
   ];
 
@@ -114,7 +114,7 @@ const Hero = () => {
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-[#FF4500] shadow-lg shadow-[#FF4500]/50"></div>
-                    <span className="text-white text-sm font-medium">CBSE, ICSE & State Boards</span>
+                    <span className="text-white text-sm font-medium">CBSE, ICSE, ISC, NIOS & State Boards</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-[#FF4500] shadow-lg shadow-[#FF4500]/50"></div>
@@ -138,7 +138,7 @@ const Hero = () => {
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-2">
                       <ArrowRight className="w-3 h-3 text-[#FF4500]" />
-                      <span className="text-xs sm:text-sm text-gray-300">Aligned with CBSE, ICSE & State Syllabus</span>
+                      <span className="text-xs sm:text-sm text-gray-300">Aligned with CBSE, ICSE, ISC, NIOS & State Syllabus</span>
                     </div>
                   </div>
                 </div>
@@ -161,7 +161,7 @@ const Hero = () => {
                     </div>
                     <div className="flex items-center gap-2">
                       <ArrowRight className="w-3 h-3 text-[#FF4500]" />
-                      <span className="text-xs sm:text-sm text-gray-300">Covers 3 Major Boards</span>
+                      <span className="text-xs sm:text-sm text-gray-300">Covers 5 Major Boards</span>
                     </div>
                   </div>
                 </div>
