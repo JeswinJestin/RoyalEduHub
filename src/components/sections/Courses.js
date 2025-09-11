@@ -152,7 +152,7 @@ const Courses = ({ hideHeader = false }) => {
                   <div className="flex-shrink-0 mt-4 lg:mt-0">
                     <button 
                       onClick={() => navigate(`/courses?course=${course.id}`)}
-                      className="bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white btn-compact rounded-lg font-medium transition-all duration-300 backdrop-blur-sm cursor-pointer flex items-center justify-center"
+                      className="btn-secondary btn-compact rounded-lg font-medium cursor-pointer flex items-center justify-center"
                     >
                       Learn More
                       <ArrowRight className="ml-2 h-4 w-4" />
