@@ -92,7 +92,7 @@ const AboutPage = () => {
       role: "Founder & CEO (Chief Executive Officer)",
       description: "Visionary leader with extensive experience in educational technology and student development.",
       workDescription: "Leads strategic vision and company direction. Oversees all major business decisions, partnerships, and growth initiatives. Ensures Royal Edu Hub maintains its mission of accessible, quality education for all students worldwide.",
-      image: "/team/francis.JPG",
+      image: "/team/francis.webp",
       icon: Crown,
       workIcon: Briefcase,
       isCEO: true,
@@ -104,7 +104,7 @@ const AboutPage = () => {
       role: "COO - Chief Operating Officer",
       description: "Operational excellence expert ensuring smooth delivery of educational services.",
       workDescription: "Manages day-to-day operations and ensures seamless service delivery. Coordinates between departments, optimizes processes, and maintains quality standards across all educational programs and student interactions.",
-      image: "/team/neethu.jpeg", 
+      image: "/team/neethu.webp", 
       icon: Settings,
       workIcon: BarChart3,
       position: "coo"
@@ -115,7 +115,7 @@ const AboutPage = () => {
       role: "CTIO - Chief Technology & Innovation Officer",
       description: "Technology visionary developing cutting-edge learning platforms and educational tools.",
       workDescription: "Develops and maintains the technological infrastructure powering Royal Edu Hub. Creates innovative learning platforms, implements AI-driven educational tools, and ensures scalable, secure technology solutions.",
-      image: "/team/jeswin.jpeg",
+      image: "/team/jeswin.webp",
       icon: Rocket,
       workIcon: Code,
       position: "cto"
@@ -127,7 +127,7 @@ const AboutPage = () => {
       role: "CMO - Chief Marketing Officer", 
       description: "Strategic marketing expert driving Royal Edu Hub's growth and brand development.",
       workDescription: "Develops comprehensive marketing strategies to reach students globally. Manages brand positioning, digital marketing campaigns, and community outreach programs to expand Royal Edu Hub's educational impact.",
-      image: "/team/dona1.jpeg",
+      image: "/team/dona1.webp",
       icon: Megaphone,
       workIcon: TrendingUp,
       position: "cmo"
@@ -138,7 +138,7 @@ const AboutPage = () => {
       role: "CCD - Chief Creative Director",
       description: "Creative mastermind crafting compelling visual experiences and educational content design.",
       workDescription: "Creates engaging visual content and educational materials. Designs user interfaces, develops creative learning resources, and ensures all visual communications align with Royal Edu Hub's educational mission.",
-      image: "/team/joslet1.jpeg",
+      image: "/team/joslet1.webp",
       icon: Palette,
       workIcon: Heart,
       position: "creative"
@@ -268,71 +268,98 @@ const AboutPage = () => {
                 </p>
               </div>
 
-              {/* Work Environment Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {/* Culture Highlights */}
+              {/* Work Environment Images Grid - Responsive 4 Image Layout */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                {/* Reception Area */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.8 }}
-                  className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-orange-500/30 transition-all duration-300"
+                  className="group relative overflow-hidden rounded-xl border border-white/10 hover:border-orange-500/30 transition-all duration-300"
                 >
-                  <div className="flex items-center mb-4">
-                    <Heart className="w-6 h-6 text-orange-500 mr-3" />
-                    <h4 className="text-white font-semibold text-lg">Collaborative Culture</h4>
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src="/office/IMG_20250730_130720.webp"
+                      alt="Royal Edu Hub Reception Area"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
                   </div>
-                  <p className="text-white/80 text-sm leading-relaxed">
-                    Our open workspace fosters creativity and teamwork, where every voice is heard and innovation thrives.
-                  </p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <h4 className="text-white font-semibold text-sm lg:text-base mb-1">Reception Area</h4>
+                    <p className="text-white/80 text-xs lg:text-sm">Modern welcoming entrance</p>
+                  </div>
                 </motion.div>
 
+                {/* Waiting Lounge */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.9 }}
-                  className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-orange-500/30 transition-all duration-300"
+                  className="group relative overflow-hidden rounded-xl border border-white/10 hover:border-orange-500/30 transition-all duration-300"
                 >
-                  <div className="flex items-center mb-4">
-                    <Zap className="w-6 h-6 text-orange-500 mr-3" />
-                    <h4 className="text-white font-semibold text-lg">Innovation Hub</h4>
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src="/office/IMG_20250801_135546.webp"
+                      alt="Royal Edu Hub Waiting Lounge"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
                   </div>
-                  <p className="text-white/80 text-sm leading-relaxed">
-                    State-of-the-art technology and modern facilities enable our team to develop cutting-edge educational solutions.
-                  </p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <h4 className="text-white font-semibold text-sm lg:text-base mb-1">Waiting Lounge</h4>
+                    <p className="text-white/80 text-xs lg:text-sm">Comfortable seating area</p>
+                  </div>
                 </motion.div>
 
+                {/* Meeting Room */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 1.0 }}
-                  className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-orange-500/30 transition-all duration-300 md:col-span-2 lg:col-span-1"
+                  className="group relative overflow-hidden rounded-xl border border-white/10 hover:border-orange-500/30 transition-all duration-300"
                 >
-                  <div className="flex items-center mb-4">
-                    <Target className="w-6 h-6 text-orange-500 mr-3" />
-                    <h4 className="text-white font-semibold text-lg">Growth Mindset</h4>
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src="/office/office2-1.webp"
+                      alt="Royal Edu Hub Meeting Room"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
                   </div>
-                  <p className="text-white/80 text-sm leading-relaxed">
-                    We believe in continuous learning and professional development, creating an environment where everyone can excel.
-                  </p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <h4 className="text-white font-semibold text-sm lg:text-base mb-1">Meeting Room</h4>
+                    <p className="text-white/80 text-xs lg:text-sm">Collaborative discussion space</p>
+                  </div>
+                </motion.div>
+
+                {/* Front Office Desk */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 1.1 }}
+                  className="group relative overflow-hidden rounded-xl border border-white/10 hover:border-orange-500/30 transition-all duration-300"
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src="/office/office3-1.webp"
+                      alt="Royal Edu Hub Front Office Desk"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <h4 className="text-white font-semibold text-sm lg:text-base mb-1">Front Office Desk</h4>
+                    <p className="text-white/80 text-xs lg:text-sm">Administrative workspace</p>
+                  </div>
                 </motion.div>
               </div>
 
-              {/* Workspace Values */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.1 }}
-                className="mt-8 bg-gradient-to-r from-orange-500/10 to-orange-600/10 backdrop-blur-sm rounded-xl p-8 border border-orange-500/20"
-              >
-                <div className="text-center">
-                  <h4 className="text-white font-bold text-xl mb-4">
-                    "Building Tomorrow's Education Today"
-                  </h4>
-                  <p className="text-white/90 text-base leading-relaxed max-w-3xl mx-auto">
-                    Our workspace reflects our commitment to excellence, innovation, and student success. Every corner of our office is designed to inspire creativity and foster the collaborative spirit that drives our mission forward.
-                  </p>
-                </div>
-              </motion.div>
+
             </motion.div>
           </motion.div>
         </div>

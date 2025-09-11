@@ -10,7 +10,7 @@ const testimonials = [
       grade: 'Google Review',
       rating: 5,
       text: "Royal Edu Hub's nano-batch classes are perfect for students who want personal attention and concept clarity. My grades improved within weeks of joining. Special thanks to the tutors for their patience and dedication!",
-      avatar: '/testimonials/shinemathews.png',
+      avatar: '/testimonials/shinemathews.webp',
       reviewDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
       profileColor: '#4F46E5'
     },
@@ -19,7 +19,7 @@ const testimonials = [
       grade: 'Google Review',
       rating: 5,
       text: 'Very professional coaching! Royal Edu Hub offers individual tuition sessions and small group batches that ensure maximum learning. I highly recommend them for board exam preparation in Physics, Chemistry, and Maths.',
-      avatar: '/testimonials/chrisann.png',
+      avatar: '/testimonials/chrisann.webp',
       reviewDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
       profileColor: '#059669'
     },
@@ -28,7 +28,7 @@ const testimonials = [
       grade: 'Google Review',
       rating: 5,
       text: 'Royal Edu Hub offers the best online tuition for Class 10 and 12 students. I joined their Physics and Maths nano-batch classes and loved the interactive teaching style. The individual attention and constant feedback really helped me score higher in my board exams.',
-      avatar: '/testimonials/ashisaaash.png',
+      avatar: '/testimonials/ashisaaash.webp',
       reviewDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
       profileColor: '#DC2626'
     },
@@ -37,7 +37,7 @@ const testimonials = [
       grade: 'Google Review',
       rating: 5,
       text: 'I joined Royal Edu Hub for Class 12 Chemistry and Maths tuition and was amazed by how well they explained each topic. The LMS system, regular tests, and individual mentoring kept me motivated. Highly recommend for students aiming for top marks in board exams.',
-      avatar: '/testimonials/vinayakchakraborty.png',
+      avatar: '/testimonials/vinayakchakraborty.webp',
       reviewDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
       profileColor: '#7C3AED'
     },
@@ -64,7 +64,7 @@ const testimonials = [
       grade: 'Google Review',
       rating: 5,
       text: 'Royal Edu Hub is truly the best choice for Class 10 and Class 12 students. I joined for offline Physics and Chemistry tuition in Alappuzha and also attended their online Maths classes. The lessons are well-structured, the tutors explain every concept clearly, and the small batches ensure personal attention. Highly recommended for both online and offline learning.',
-      avatar: '/testimonials/princepabraham.png',
+      avatar: '/testimonials/princepabraham.webp',
       reviewDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
       profileColor: '#16A34A'
     },

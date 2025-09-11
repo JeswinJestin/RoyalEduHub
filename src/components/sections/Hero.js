@@ -10,8 +10,8 @@ const Hero = () => {
   ];
 
   // Background image crossfade (keeps same ratio/object-fit as first image)
-  const BASE_IMAGE = '/your-hero-image.jpg';
-  const ALT_IMAGE = '/your-hero-image-2.jpg'; // Optional second image (add to /public to enable)
+  const BASE_IMAGE = '/your-hero-image.webp';
+  const ALT_IMAGE = '/your-hero-image-2.webp'; // Optional second image (add to /public to enable)
   const [availableImages, setAvailableImages] = useState([BASE_IMAGE]);
   const [bgIndex, setBgIndex] = useState(0);
 

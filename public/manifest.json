@@ -8,13 +8,13 @@
       "type": "image/x-icon"
     },
     {
-      "src": "royal-edu-hub-logo.png",
-      "type": "image/png",
+      "src": "royal-edu-hub-logo.webp",
+      "type": "image/webp",
       "sizes": "192x192"
     },
     {
-      "src": "royal-edu-hub-logo.png",
-      "type": "image/png",
+      "src": "royal-edu-hub-logo.webp",
+      "type": "image/webp",
       "sizes": "512x512"
     }
   ],

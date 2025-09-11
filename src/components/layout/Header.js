@@ -69,7 +69,7 @@ const Header = () => {
             <Link to="/" onClick={handleLogoClick} className="flex items-center ml-0 sm:ml-2 xl:ml-4">
               <div className="w-14 h-14 sm:w-14 sm:h-14 xl:w-16 xl:h-16 flex items-center justify-center">
                 <img
-                  src="/royal-edu-hub-logo.png"
+                  src="/royal-edu-hub-logo.webp"
                   alt="Royal Edu Hub Logo"
                   className="w-full h-full object-contain"
                 />
