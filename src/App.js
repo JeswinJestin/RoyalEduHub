@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from 'react-hot-toast';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
@@ -197,6 +198,7 @@ function App() {
         <RoutedContent />
       </SmoothScroll>
       <Toaster position="top-right" />
+      <Analytics />
     </Router>
   );
 }
