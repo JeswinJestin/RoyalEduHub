@@ -1,8 +1,9 @@
-import React, { useState, useRef, Suspense, lazy } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Send, BookOpen, Loader2 } from "lucide-react";
+import { Send, BookOpen } from "lucide-react";
 import toast from "react-hot-toast";
+import Spline from "@splinetool/react-spline";
 import {
   validateEmail,
   validatePhone,
@@ -12,9 +13,6 @@ import {
   prepareSecureFormData,
 } from "../../utils/security";
 import { submitFormWithFallback } from "../../services/emailService";
-
-// Lazy load Spline component for better performance
-const Spline = lazy(() => import("@splinetool/react-spline"));
 
 const Contact = () => {
   const [,] = useInView({
@@ -259,30 +257,19 @@ const Contact = () => {
         <div className="absolute bottom-0 right-0 w-3/5 h-1/3 bg-black"></div>
       </div>
 
-      {/* 3D Character Background - Show entire design with lazy loading */}
+      {/* 3D Character Background - Show entire design */}
       <div className="absolute inset-0 hidden lg:block z-5">
         <div className="absolute right-0 top-0 w-3/5 h-full overflow-visible flex items-center justify-center">
           {!splineError && (
-            <Suspense
-              fallback={
-                <div className="w-full h-full flex items-center justify-center text-gray-500">
-                  <div className="text-center">
-                    <Loader2 className="w-12 h-12 mx-auto mb-4 opacity-50 animate-spin" />
-                    <p className="text-sm opacity-50">Loading 3D Scene...</p>
-                  </div>
-                </div>
-              }
-            >
-              <Spline
-                scene="https://prod.spline.design/kKyWeZz85xetpdcW/scene.splinecode"
-                className="w-full h-full pointer-events-none scale-90"
-                style={{
-                  background: "transparent",
-                  transform: "translateX(8%) translateY(0%)",
-                }}
-                onError={() => setSplineError(true)}
-              />
-            </Suspense>
+            <Spline
+              scene="https://prod.spline.design/kKyWeZz85xetpdcW/scene.splinecode"
+              className="w-full h-full pointer-events-none scale-90"
+              style={{
+                background: "transparent",
+                transform: "translateX(8%) translateY(0%)",
+              }}
+              onError={() => setSplineError(true)}
+            />
           )}
           {splineError && (
             <div className="w-full h-full flex items-center justify-center text-gray-500">
