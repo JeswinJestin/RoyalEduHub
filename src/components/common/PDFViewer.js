@@ -23,7 +23,36 @@ const PDFViewer = ({ file }) => {
     };
     measure();
     window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    // Mobile scroll-chaining fallback for browsers that ignore overscroll-behavior (older iOS Safari)
+    const el = viewerRef.current;
+    let startY = 0;
+    const onTouchStart = (e) => {
+      if (!el) return;
+      startY = e.touches?.[0]?.clientY ?? 0;
+    };
+    const onTouchMove = (e) => {
+      if (!el) return;
+      const currentY = e.touches?.[0]?.clientY ?? 0;
+      const deltaY = startY - currentY; // positive when swiping up
+      const atTop = el.scrollTop <= 0;
+      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
+      // When viewer is at boundary, let the page scroll instead of trapping
+      if ((atTop && deltaY < 0) || (atBottom && deltaY > 0)) {
+        e.preventDefault();
+        window.scrollBy({ top: deltaY, left: 0, behavior: "auto" });
+      }
+    };
+    if (el) {
+      el.addEventListener("touchstart", onTouchStart, { passive: true });
+      el.addEventListener("touchmove", onTouchMove, { passive: false });
+    }
+    return () => {
+      window.removeEventListener("resize", measure);
+      if (el) {
+        el.removeEventListener("touchstart", onTouchStart);
+        el.removeEventListener("touchmove", onTouchMove);
+      }
+    };
   }, []);
 
   return (
@@ -43,8 +72,8 @@ const PDFViewer = ({ file }) => {
       {/* Content: vertical, fit-width pages for mobile */}
       <div
         ref={viewerRef}
-        className="w-full h-[70vh] sm:h-[75vh] bg-black/30 overflow-y-auto overscroll-contain"
-        style={{ touchAction: "pan-x pan-y" }}
+        className="w-full h-[70vh] sm:h-[75vh] bg-black/30 overflow-y-auto overscroll-auto"
+        style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
       >
         <Document
           file={file}
