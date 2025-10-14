@@ -15,9 +15,10 @@ import {
 import { submitFormWithFallback } from "../../services/emailService";
 
 const Contact = () => {
-  const [,] = useInView({
+  // Render Spline only when the Contact section enters the viewport
+  const [sectionRef, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.2,
   });
 
   const [formData, setFormData] = useState({
@@ -234,6 +235,7 @@ const Contact = () => {
     <section
       id="contact"
       className="min-h-screen relative overflow-hidden bg-black pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10"
+      ref={sectionRef}
     >
       {/* Black Background Zone - from right to form area */}
       <div className="absolute inset-0 pointer-events-none">
@@ -258,12 +260,12 @@ const Contact = () => {
       </div>
 
       {/* 3D Character Background - Show entire design */}
-      <div className="absolute inset-0 hidden lg:block z-5">
+      <div className="absolute inset-0 hidden lg:block z-30">
         <div className="absolute right-0 top-0 w-3/5 h-full overflow-visible flex items-center justify-center">
-          {!splineError && (
+          {inView && !splineError && (
             <Spline
               scene="https://prod.spline.design/kKyWeZz85xetpdcW/scene.splinecode"
-              className="w-full h-full pointer-events-none scale-90"
+              className="w-full h-full pointer-events-auto scale-90"
               style={{
                 background: "transparent",
                 transform: "translateX(8%) translateY(0%)",
@@ -284,8 +286,8 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Mid-section - transparent background */}
-      <div className="relative z-20 py-6 md:py-8">
+      {/* Mid-section - transparent background; allow pointer-through except form */}
+      <div className="relative z-20 py-6 md:py-8 pointer-events-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main Heading - Always Centered */}
           <motion.div
@@ -318,7 +320,7 @@ const Contact = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-4xl mx-auto lg:max-w-md xl:max-w-lg lg:mr-auto lg:ml-2 xl:ml-4 -mt-2 sm:-mt-4 lg:-mt-6"
+            className="max-w-4xl mx-auto lg:max-w-md xl:max-w-lg lg:mr-auto lg:ml-2 xl:ml-4 -mt-2 sm:-mt-4 lg:-mt-6 pointer-events-auto"
           >
             <div className="bg-white/15 md:bg-white/10 md:backdrop-blur-lg rounded-2xl border border-white/20 p-4 sm:p-6 md:p-8 lg:p-6 xl:p-8 shadow-2xl">
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-6 flex items-center justify-center space-x-3">

@@ -8,6 +8,7 @@ import Contact from '../components/sections/Contact';
 import Stats from '../components/sections/Stats';
 import Section3D from '../components/animations/Section3D';
 import ParallaxBackground from '../components/animations/ParallaxBackground';
+import BrochureSection from '../components/sections/BrochureSection';
 
 const HomePage = () => {
   // Performance optimization: reduce animations on low-end devices
@@ -70,6 +71,11 @@ const HomePage = () => {
         </section>
       </ConditionalWrapper>
 
+      {/* Brochure Section (between Courses and Testimonials) */}
+      <ConditionalWrapper useParallax={true} useSection3D={true}>
+        <BrochureSection />
+      </ConditionalWrapper>
+
       {/* Testimonials Section with conditional animations */}
       <ConditionalWrapper useParallax={true} useSection3D={true}>
         <section id="testimonials" className="relative">
@@ -84,8 +90,8 @@ const HomePage = () => {
         </section>
       </ConditionalWrapper>
 
-      {/* Contact Section with conditional animations */}
-      <ConditionalWrapper useParallax={true} useSection3D={true}>
+      {/* Contact Section WITHOUT parallax/3D wrappers to preserve precise pointer tracking */}
+      <ConditionalWrapper useParallax={false} useSection3D={false}>
         <section id="contact" className="relative">
           <Contact />
         </section>
