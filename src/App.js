@@ -16,6 +16,7 @@ import SmoothScroll from './components/animations/SmoothScroll';
 import './styles/globals.css';
 
 import SEOManager from './utils/seo';
+import FacebookPixelTracker from './components/common/FacebookPixelTracker';
 
 // Lazy-loaded Page Components for better performance
 const HomePage = React.lazy(() => import('./pages/HomePage'));
@@ -198,6 +199,7 @@ function App() {
         {/* Footer-triggered route preloader overlay */}
         <RoutePreloader />
         <SEOManager />
+        <FacebookPixelTracker />
         <RoutedContent />
       </SmoothScroll>
       <Toaster position="top-right" />

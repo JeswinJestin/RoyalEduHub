@@ -101,7 +101,7 @@ const ContactUsPage = () => {
                     href={ADDRESS.googleMapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block mt-2 text-sm text-orange-400 hover:text-orange-300 underline underline-offset-2 u-url"
+                    className="block mt-2 text-sm text-orange-400 hover:text-orange-300 underline underline-offset-2 u-url"
                   >
                     View on Google Maps
                   </a>

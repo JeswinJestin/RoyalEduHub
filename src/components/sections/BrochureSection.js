@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
 import PDFViewer from "../common/PDFViewer";
 
 const BrochureSection = () => {

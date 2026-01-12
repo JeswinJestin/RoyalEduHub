@@ -124,7 +124,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Open Branch Office in Google Maps"
-                      className="inline-block mt-2 text-sm text-orange-400 hover:text-orange-300 underline underline-offset-2 u-url"
+                      className="block mt-2 text-sm text-orange-400 hover:text-orange-300 underline underline-offset-2 u-url"
                     >
                       View on Google Maps
                     </a>
@@ -290,7 +290,7 @@ const Footer = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="min-h-16 py-4 flex items-center justify-center">
-            <div className="text-center lg:ml-auto lg:mr-0">
+            <div className="text-center w-full">
               <p className="text-white/70 text-xs">
                 <a
                   href="/terms"
