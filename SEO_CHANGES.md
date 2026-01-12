@@ -29,12 +29,29 @@
 
 ## Local SEO
 - JSON‑LD schema includes NAP: name, address, phone, email, sameAs social profiles.
-- Ensure NAP consistency across directories (see checklist below).
+- Upgraded to nested schema via @graph with Organization and LocalBusiness in [index.html](file:///c:/Users/jeswi/Downloads/EDU_HUB_/public/index.html#L44-L100).
+- Implemented semantic microformats (h-card, p-adr, p-tel, u-email, u-url) in:
+  - Footer: [Footer.js](file:///c:/Users/jeswi/Downloads/EDU_HUB_/src/components/layout/Footer.js)
+  - Contact page: [ContactUsPage.js](file:///c:/Users/jeswi/Downloads/EDU_HUB_/src/pages/ContactUsPage.js)
+  - About page: [AboutPage.js](file:///c:/Users/jeswi/Downloads/EDU_HUB_/src/pages/AboutPage.js)
+- Centralized NAP constants for consistency: [nap.js](file:///c:/Users/jeswi/Downloads/EDU_HUB_/src/constants/nap.js)
+- Added automated NAP/microformat tests: [napConsistency.test.js](file:///c:/Users/jeswi/Downloads/EDU_HUB_/src/__tests__/napConsistency.test.js)
 
 ### NAP Consistency Checklist
 - Use exactly: “Royal Edu Hub”, `royaleduhub24@gmail.com`, `+91 70341 11684`.
 - Address: “Royal Complex, Kaithavana Junction, Pazhaveedu, Alappuzha, Kerala 688003, India”.
 - Primary URL: `https://royaleduhub.com`.
+
+### Platform Consistency Actions
+- Update Google Business Profile to the exact format above.
+- Align third‑party listings (Yelp, Bing Places, etc.) with the NAP constants.
+- Monitor NAP via unit tests and monthly directory audit.
+
+### Validation & QA
+- Validate JSON‑LD using Google’s Rich Results Test (copy from [index.html](file:///c:/Users/jeswi/Downloads/EDU_HUB_/public/index.html#L44-L100)).
+- Inspect URL Inspection in Search Console for address parsing.
+- Confirm rendering across devices; microformats use semantic `<address>` with line breaks.
+- Regression: no functional changes; styles preserved; performance impact negligible.
 
 ## Backlink Strategy
 - Target high-authority, relevant domains: education portals, local news, ed‑tech blogs, academic forums.
@@ -48,5 +65,10 @@
 - Use Vercel Analytics and GSC performance reports to monitor clicks, impressions, CTR.
 
 ## Redirects
-- No URL changes were introduced; Netlify SPA redirect remains in [netlify.toml](file:///c:/Users/jeswi/Downloads/EDU_HUB_/netlify.toml).
+- No URL changes were introduced; Vercel rewrites configured in [vercel.json](file:///c:/Users/jeswi/Downloads/EDU_HUB_/vercel.json) (replacing Netlify config).
 
+## Email Security (DMARC & SPF)
+- Created DNS configuration guide: [DNS_CONFIG.md](file:///c:/Users/jeswi/Downloads/EDU_HUB_/DNS_CONFIG.md).
+- Implemented SPF record (`v=spf1 include:_spf.google.com ~all`) to authorize Google/Gmail as sender.
+- Implemented DMARC record (`v=DMARC1; p=none; ...`) for monitoring and gradual enforcement.
+- **Action Required:** Add these TXT records to your domain's DNS settings (e.g., GoDaddy, Namecheap).

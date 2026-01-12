@@ -41,33 +41,61 @@
     <!-- Spline Viewer Script -->
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.40/build/spline-viewer.js"></script>
     
-    <!-- Local Business Schema -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Royal Edu Hub",
-        "image": "https://royaleduhub.com/og-image.png",
-        "url": "https://royaleduhub.com",
-        "email": "mailto:royaleduhub24@gmail.com",
-        "telephone": "+91-70341-11684",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Royal Complex, Kaithavana Junction, Pazhaveedu",
-          "addressLocality": "Alappuzha",
-          "addressRegion": "Kerala",
-          "postalCode": "688003",
-          "addressCountry": "IN"
-        },
-        "areaServed": "India",
-        "priceRange": "₹₹",
-        "openingHours": "Mo-Sa 09:00-20:00",
-        "sameAs": [
-          "https://www.facebook.com/p/Royal-Edu-Hub-61562615087896/",
-          "https://www.instagram.com/royaleduhubofficial/",
-          "https://www.linkedin.com/company/royal-edu-hub/?viewAsMember=true",
-          "https://www.youtube.com/channel/UCtPr-9f-14Nk--tn4j5y13A/videos",
-          "https://in.pinterest.com/royaleduhub24/"
+        "@graph": [
+          {
+            "@id": "#org",
+            "@type": "Organization",
+            "name": "Royal Edu Hub",
+            "url": "https://royaleduhub.com",
+            "logo": "https://royaleduhub.com/og-image.png",
+            "sameAs": [
+              "https://www.facebook.com/p/Royal-Edu-Hub-61562615087896/",
+              "https://www.instagram.com/royaleduhubofficial/",
+              "https://www.linkedin.com/company/royal-edu-hub/?viewAsMember=true",
+              "https://www.youtube.com/channel/UCtPr-9f-14Nk--tn4j5y13A/videos",
+              "https://in.pinterest.com/royaleduhub24/"
+            ],
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "email": "royaleduhub24@gmail.com",
+                "telephone": "+91-70341-11684",
+                "areaServed": "IN",
+                "availableLanguage": ["en"]
+              }
+            ]
+          },
+          {
+            "@type": "LocalBusiness",
+            "name": "Royal Edu Hub",
+            "image": "https://royaleduhub.com/og-image.png",
+            "url": "https://royaleduhub.com",
+            "email": "mailto:royaleduhub24@gmail.com",
+            "telephone": "+91-70341-11684",
+            "parentOrganization": { "@id": "#org" },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Royal Complex, Kaithavana Junction, Pazhaveedu",
+              "addressLocality": "Alappuzha",
+              "addressRegion": "Kerala",
+              "postalCode": "688003",
+              "addressCountry": "IN"
+            },
+            "areaServed": "IN",
+            "priceRange": "₹₹",
+            "openingHours": "Mo-Sa 09:00-20:00",
+            "sameAs": [
+              "https://www.facebook.com/p/Royal-Edu-Hub-61562615087896/",
+              "https://www.instagram.com/royaleduhubofficial/",
+              "https://www.linkedin.com/company/royal-edu-hub/?viewAsMember=true",
+              "https://www.youtube.com/channel/UCtPr-9f-14Nk--tn4j5y13A/videos",
+              "https://in.pinterest.com/royaleduhub24/"
+            ]
+          }
         ]
       }
     </script>

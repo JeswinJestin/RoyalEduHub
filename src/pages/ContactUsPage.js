@@ -1,6 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';
+import {
+  BUSINESS_NAME,
+  PRIMARY_PHONE,
+  SECONDARY_PHONE,
+  PRIMARY_PHONE_TEL,
+  SECONDARY_PHONE_TEL,
+  EMAIL,
+  ADDRESS,
+} from '../constants/nap';
 
 // Local Pinterest icon (inline SVG) to ensure compatibility (same as Footer)
 const PinterestIcon = (props) => (
@@ -48,8 +57,8 @@ const ContactUsPage = () => {
               <div>
                 <h2 className="text-white font-semibold text-base sm:text-lg mb-1">Contact Numbers</h2>
                 <div className="space-y-0.5">
-                  <a href="tel:+917034111684" className="text-white/80 hover:text-white transition-colors block">+91 70341 11684</a>
-                  <a href="tel:+918794256411" className="text-white/80 hover:text-white transition-colors block">+91 87942 56411</a>
+                  <a href={`tel:${PRIMARY_PHONE_TEL}`} className="text-white/80 hover:text-white transition-colors block p-tel">{PRIMARY_PHONE}</a>
+                  <a href={`tel:${SECONDARY_PHONE_TEL}`} className="text-white/80 hover:text-white transition-colors block p-tel">{SECONDARY_PHONE}</a>
                 </div>
               </div>
             </div>
@@ -61,7 +70,7 @@ const ContactUsPage = () => {
               <Mail className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
               <div>
                 <h2 className="text-white font-semibold text-base sm:text-lg mb-1">Mail ID</h2>
-                <a href="mailto:royaleduhub24@gmail.com" className="text-white/80 hover:text-white transition-colors">royaleduhub24@gmail.com</a>
+                <a href={`mailto:${EMAIL}`} className="text-white/80 hover:text-white transition-colors u-email">{EMAIL}</a>
               </div>
             </div>
           </section>
@@ -79,19 +88,24 @@ const ContactUsPage = () => {
               <MapPin className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
               <div>
                 <h2 className="text-white font-semibold text-base sm:text-lg mb-1">Branch Office</h2>
-                <p className="text-white/70 leading-snug">
-                  Royal Complex, Kaithavana Jn,<br />
-                  Pazhaveedu, Alappuzha,<br />
-                  Kerala 688003, India
-                </p>
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=Royal%20Complex%2C%20Kaithavana%20Jn%2C%20Pazhaveedu%2C%20Alappuzha%2C%20Kerala%20688003%2C%20India"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-2 text-sm text-orange-400 hover:text-orange-300 underline underline-offset-2"
-                >
-                  View on Google Maps
-                </a>
+                <address className="text-white/70 leading-snug not-italic h-card">
+                  <span className="p-name sr-only">{BUSINESS_NAME}</span>
+                  <span className="p-adr">
+                    <span className="p-street-address">{ADDRESS.streetAddressLine1}</span>
+                    <br />
+                    <span className="p-street-address">{ADDRESS.streetAddressLine2}</span>
+                    <br />
+                    <span className="p-region">{ADDRESS.regionLine}</span>
+                  </span>
+                  <a
+                    href={ADDRESS.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-2 text-sm text-orange-400 hover:text-orange-300 underline underline-offset-2 u-url"
+                  >
+                    View on Google Maps
+                  </a>
+                </address>
               </div>
             </div>
           </section>

@@ -2,6 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import {
+  BUSINESS_NAME,
+  PRIMARY_PHONE,
+  SECONDARY_PHONE,
+  PRIMARY_PHONE_TEL,
+  SECONDARY_PHONE_TEL,
+  EMAIL,
+  ADDRESS,
+} from '../../constants/nap';
 
 // Local Pinterest icon (inline SVG) to ensure compatibility
 const PinterestIcon = (props) => (
@@ -62,8 +71,8 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-xl font-bold bg-gradient-to-b from-[#FF6A00] to-[#B02000] bg-clip-text text-transparent mb-3">
-                Royal Edu Hub
+              <h3 className="text-xl font-bold bg-gradient-to-b from-[#FF6A00] to-[#B02000] bg-clip-text text-transparent mb-3 p-name">
+                {BUSINESS_NAME}
               </h3>
               <p className="text-white/70 mb-4 text-sm leading-relaxed">
                 Your gateway to global success through personalized online education. 
@@ -76,8 +85,8 @@ const Footer = () => {
                   <Phone className="w-4 h-4 bg-gradient-to-b from-[#FF6A00] to-[#B02000] bg-clip-text text-transparent absolute -left-6 top-0" />
                   <div>
                     <span className="text-sm font-semibold block text-white">Contact Us</span>
-                    <a href="tel:+917034111684" className="text-white/70 text-sm block">+91 70341 11684</a>
-                    <a href="tel:+918794256411" className="text-white/70 text-sm block">+91 87942 56411</a>
+                    <a href={`tel:${PRIMARY_PHONE_TEL}`} className="text-white/70 text-sm block p-tel">{PRIMARY_PHONE}</a>
+                    <a href={`tel:${SECONDARY_PHONE_TEL}`} className="text-white/70 text-sm block p-tel">{SECONDARY_PHONE}</a>
                   </div>
                 </div>
                 {/* Email */}
@@ -85,7 +94,7 @@ const Footer = () => {
                   <Mail className="w-4 h-4 bg-gradient-to-b from-[#FF6A00] to-[#B02000] bg-clip-text text-transparent absolute -left-6 top-0" />
                   <div>
                     <span className="text-sm font-semibold block text-white">Mail ID</span>
-                    <a href="mailto:royaleduhub24@gmail.com" className="text-white/70 text-sm">royaleduhub24@gmail.com</a>
+                    <a href={`mailto:${EMAIL}`} className="text-white/70 text-sm u-email">{EMAIL}</a>
                   </div>
                 </div>
                 
@@ -99,21 +108,28 @@ const Footer = () => {
                 </div>
                 
                 {/* Branch Office */}
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=Royal%20Complex%2C%20Kaithavana%20Jn%2C%20Pazhaveedu%2C%20Alappuzha%2C%20Kerala%20688003%2C%20India"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Open Branch Office in Google Maps"
-                  className="block relative space-y-1 no-underline cursor-pointer"
-                >
+                <address className="block relative space-y-1 not-italic h-card">
                   <MapPin className="w-4 h-4 bg-gradient-to-b from-[#FF6A00] to-[#B02000] bg-clip-text text-transparent absolute -left-6 top-0" />
                   <div>
                     <span className="text-sm font-semibold block text-white">Branch Office:</span>
-                    <span className="text-white/70 text-sm">Royal Complex, Kaithavana Jn,</span>
-                    <span className="text-white/70 text-sm block">Pazhaveedu, Alappuzha,</span>
-                    <span className="text-white/70 text-sm block">Kerala 688003, India</span>
+                    <span className="text-white/70 text-sm p-adr">
+                      <span className="p-street-address">{ADDRESS.streetAddressLine1}</span>
+                      <br />
+                      <span className="p-street-address">{ADDRESS.streetAddressLine2}</span>
+                      <br />
+                      <span className="p-region">{ADDRESS.regionLine}</span>
+                    </span>
+                    <a
+                      href={ADDRESS.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Open Branch Office in Google Maps"
+                      className="inline-block mt-2 text-sm text-orange-400 hover:text-orange-300 underline underline-offset-2 u-url"
+                    >
+                      View on Google Maps
+                    </a>
                   </div>
-                </a>
+                </address>
               </div>
             </motion.div>
           </div>

@@ -19,6 +19,11 @@ import {
   BarChart3
 } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import { MapPin } from 'lucide-react';
+import {
+  BUSINESS_NAME,
+  ADDRESS,
+} from '../constants/nap';
 
 const AboutPage = () => {
   const [ref, inView] = useInView({
@@ -578,6 +583,36 @@ const AboutPage = () => {
       </section>
 
       {/* Moved mobile/tablet and faculty note blocks inside the Team section to maintain background and responsiveness */}
+
+      {/* Our Address */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 mb-16">
+        <div className="bg-white/5 border border-white/10 rounded-xl p-6">
+          <div className="flex items-start gap-3">
+            <MapPin className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
+            <div>
+              <h2 className="text-white font-semibold text-base sm:text-lg mb-1">Our Address</h2>
+              <address className="text-white/70 leading-snug not-italic h-card">
+                <span className="p-name sr-only">{BUSINESS_NAME}</span>
+                <span className="p-adr">
+                  <span className="p-street-address">{ADDRESS.streetAddressLine1}</span>
+                  <br />
+                  <span className="p-street-address">{ADDRESS.streetAddressLine2}</span>
+                  <br />
+                  <span className="p-region">{ADDRESS.regionLine}</span>
+                </span>
+                <a
+                  href={ADDRESS.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-2 text-sm text-orange-400 hover:text-orange-300 underline underline-offset-2 u-url"
+                >
+                  View on Google Maps
+                </a>
+              </address>
+            </div>
+          </div>
+        </div>
+      </section>
 
   </div>
 );
