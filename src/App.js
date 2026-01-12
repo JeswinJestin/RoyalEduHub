@@ -15,6 +15,8 @@ import SmoothScroll from './components/animations/SmoothScroll';
 // Styles
 import './styles/globals.css';
 
+import SEOManager from './utils/seo';
+
 // Lazy-loaded Page Components for better performance
 const HomePage = React.lazy(() => import('./pages/HomePage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
@@ -195,6 +197,7 @@ function App() {
       <SmoothScroll>
         {/* Footer-triggered route preloader overlay */}
         <RoutePreloader />
+        <SEOManager />
         <RoutedContent />
       </SmoothScroll>
       <Toaster position="top-right" />
