@@ -1,22 +1,20 @@
-import { initFacebookPixel, trackEvent } from './facebookPixel';
+import { initFacebookPixel, trackEvent, trackCustomEvent } from './facebookPixel';
+import ReactPixel from 'react-facebook-pixel';
+
+jest.mock('react-facebook-pixel');
 
 describe('Facebook Pixel Utility', () => {
   const originalEnv = process.env;
   const originalNavigator = window.navigator;
 
   beforeEach(() => {
-    jest.resetModules();
+    jest.clearAllMocks();
     process.env = { ...originalEnv };
-    // Reset window.fbq
-    delete window.fbq;
-    // Mock navigator
+    // Reset navigator
     Object.defineProperty(window, 'navigator', {
-      value: { ...originalNavigator, doNotTrack: null },
+      value: { ...originalNavigator, userAgent: 'Mozilla/5.0', doNotTrack: null },
       writable: true
     });
-    // Ensure a script tag exists for the Pixel code to anchor to
-    const scriptPlaceholder = document.createElement('script');
-    document.head.appendChild(scriptPlaceholder);
   });
 
   afterAll(() => {
@@ -27,38 +25,56 @@ describe('Facebook Pixel Utility', () => {
     });
   });
 
-  test('does not initialize if ID is missing', () => {
-    process.env.REACT_APP_FACEBOOK_PIXEL_ID = '';
-    const consoleSpy = jest.spyOn(console, 'warn').mockImplementation();
-    
+  test('initializes with correct ID and options in production', () => {
+    process.env.NODE_ENV = 'production';
     initFacebookPixel();
-    
-    expect(window.fbq).toBeUndefined();
-    // expect(consoleSpy).toHaveBeenCalled(); // Warns in dev
-    consoleSpy.mockRestore();
+    expect(ReactPixel.init).toHaveBeenCalledWith(
+      '1384296423200471', 
+      {}, 
+      expect.objectContaining({ autoConfig: true })
+    );
+  });
+
+  test('initializes with correct ID and options in development', () => {
+    process.env.NODE_ENV = 'development';
+    initFacebookPixel();
+    expect(ReactPixel.init).toHaveBeenCalledWith(
+      '1384296423200471', 
+      {}, 
+      expect.objectContaining({ autoConfig: false })
+    );
   });
 
   test('respects Do Not Track', () => {
-    process.env.REACT_APP_FACEBOOK_PIXEL_ID = '123';
     Object.defineProperty(window.navigator, 'doNotTrack', { value: '1', writable: true });
+    const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
     
     initFacebookPixel();
     
-    expect(window.fbq).toBeUndefined();
+    expect(ReactPixel.init).not.toHaveBeenCalled();
+    expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('Do Not Track'));
+    consoleSpy.mockRestore();
   });
 
-  test('initializes with valid ID', () => {
-    process.env.REACT_APP_FACEBOOK_PIXEL_ID = '1234567890';
-    process.env.NODE_ENV = 'production'; // To avoid console logs
-    
+  test('skips initialization for ReactSnap', () => {
+    Object.defineProperty(window.navigator, 'userAgent', { value: 'ReactSnap', writable: true });
     initFacebookPixel();
-    
-    expect(window.fbq).toBeDefined();
-    // Verify init call
-    // Since fbq is the function created by the snippet, we can't easily spy on it unless we mock it *before* init,
-    // but init *creates* it.
-    // However, we can check if the script tag was added.
-    const script = document.querySelector('script[src="https://connect.facebook.net/en_US/fbevents.js"]');
-    expect(script).toBeInTheDocument();
+    expect(ReactPixel.init).not.toHaveBeenCalled();
+  });
+
+  test('trackEvent calls ReactPixel.track', () => {
+    trackEvent('ViewContent', { id: 123 });
+    expect(ReactPixel.track).toHaveBeenCalledWith('ViewContent', { id: 123 });
+  });
+
+  test('trackEvent skips for ReactSnap', () => {
+    Object.defineProperty(window.navigator, 'userAgent', { value: 'ReactSnap', writable: true });
+    trackEvent('ViewContent');
+    expect(ReactPixel.track).not.toHaveBeenCalled();
+  });
+
+  test('trackCustomEvent calls ReactPixel.trackCustom', () => {
+    trackCustomEvent('CustomAction', { value: 10 });
+    expect(ReactPixel.trackCustom).toHaveBeenCalledWith('CustomAction', { value: 10 });
   });
 });

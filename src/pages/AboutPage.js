@@ -585,8 +585,8 @@ const AboutPage = () => {
       {/* Moved mobile/tablet and faculty note blocks inside the Team section to maintain background and responsiveness */}
 
       {/* Our Address */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 mb-16">
-        <div className="bg-white/5 border border-white/10 rounded-xl p-6">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex justify-center items-center">
+        <div className="bg-white/5 border border-white/10 rounded-xl p-6 w-full max-w-lg">
           <div className="flex items-start gap-3">
             <MapPin className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
             <div>
@@ -605,6 +605,7 @@ const AboutPage = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block mt-2 text-sm text-orange-400 hover:text-orange-300 underline underline-offset-2 u-url"
+                  aria-label="View Royal Edu Hub's address on Google Maps in a new tab"
                 >
                   View on Google Maps
                 </a>

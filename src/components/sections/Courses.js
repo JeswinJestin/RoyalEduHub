@@ -100,7 +100,7 @@ const Courses = ({ hideHeader = false }) => {
             className="text-center mb-8 sm:mb-12 lg:mb-16"
           >
             <div className="inline-flex items-center space-x-2 sm:space-x-3 bg-gradient-primary bg-clip-text text-transparent border border-primary-500/20 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
-              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-primary-500" />
+              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-primary-500" aria-hidden="true" />
               <span className="text-sm sm:text-base font-semibold text-primary-500">
                 Our Courses
               </span>
@@ -134,7 +134,7 @@ const Courses = ({ hideHeader = false }) => {
               >
                 <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-6">
                   {/* Icon */}
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/15 to-indigo-500/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/15 to-indigo-500/15 rounded-xl flex items-center justify-center flex-shrink-0" aria-hidden="true">
                     <IconComponent className="w-8 h-8 text-orange-500" />
                   </div>
 

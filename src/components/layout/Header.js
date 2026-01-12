@@ -137,7 +137,7 @@ const Header = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <motion.nav
             className="xl:hidden bg-slate-900/85 backdrop-blur-xl border-t border-white/20 shadow-2xl overflow-hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -181,7 +181,7 @@ const Header = () => {
                 </Link>
               </motion.div>
             </div>
-          </motion.div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </motion.header>

@@ -122,12 +122,14 @@ const WhyChooseUs = () => {
               >
                 <button
                   onClick={() => toggleFAQ(index)}
+                  aria-expanded={openFAQ === index}
+                  aria-controls={`faq-answer-${index}`}
                   className="w-full p-4 sm:p-6 text-left flex items-center justify-between hover:bg-white/5 transition-colors duration-300"
                 >
                   <span className="text-white font-semibold text-sm sm:text-base md:text-lg pr-4">
                     {faq.question}
                   </span>
-                  <div className="flex-shrink-0">
+                  <div className="flex-shrink-0" aria-hidden="true">
                     {openFAQ === index ? (
                       <ChevronUp className="w-5 h-5 text-[#FF6A00]" />
                     ) : (
@@ -137,6 +139,8 @@ const WhyChooseUs = () => {
                 </button>
                 
                 <motion.div
+                  id={`faq-answer-${index}`}
+                  role="region"
                   initial={false}
                   animate={{
                     height: openFAQ === index ? 'auto' : 0,

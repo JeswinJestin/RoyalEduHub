@@ -2,7 +2,7 @@ import React, { useEffect, useState, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from 'react-hot-toast';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
 
 // Layout Components
 import Header from './components/layout/Header';
@@ -17,6 +17,14 @@ import './styles/globals.css';
 
 import SEOManager from './utils/seo';
 import FacebookPixelTracker from './components/common/FacebookPixelTracker';
+
+// Lazy load DotLottieReact to avoid WASM errors during react-snap crawl
+const DotLottieReact = React.lazy(() => {
+  if (navigator.userAgent === 'ReactSnap') {
+    return Promise.resolve({ default: () => null });
+  }
+  return import('@lottiefiles/dotlottie-react').then(module => ({ default: module.DotLottieReact }));
+});
 
 // Lazy-loaded Page Components for better performance
 const HomePage = React.lazy(() => import('./pages/HomePage'));
@@ -89,12 +97,14 @@ function RoutePreloader() {
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm">
       <div className="w-[280px] h-[280px] sm:w-[320px] sm:h-[320px]">
-        <DotLottieReact
-          src="https://lottie.host/1aa35c09-805d-452e-ba1f-9324ddd11b78/P0yiwhdjob.lottie"
-          loop
-          autoplay
-          className="w-full h-full"
-        />
+        <Suspense fallback={null}>
+          <DotLottieReact
+            src="https://lottie.host/1aa35c09-805d-452e-ba1f-9324ddd11b78/P0yiwhdjob.lottie"
+            loop
+            autoplay
+            className="w-full h-full"
+          />
+        </Suspense>
       </div>
     </div>
   );
@@ -185,12 +195,14 @@ function App() {
           introFading ? 'opacity-0' : 'opacity-100'
         }`}>
           <div className="w-[300px] h-[300px] sm:w-[360px] sm:h-[360px]">
-            <DotLottieReact
-              src="https://lottie.host/9678f28d-3e71-4746-b9a3-06de01b92a6a/zz3Uv5hBE4.lottie"
-              loop={false}
-              autoplay
-              className="w-full h-full"
-            />
+            <Suspense fallback={null}>
+              <DotLottieReact
+                src="https://lottie.host/9678f28d-3e71-4746-b9a3-06de01b92a6a/zz3Uv5hBE4.lottie"
+                loop={false}
+                autoplay
+                className="w-full h-full"
+              />
+            </Suspense>
           </div>
         </div>
       )}

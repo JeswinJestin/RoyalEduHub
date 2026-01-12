@@ -1,6 +1,21 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { motion } from "framer-motion";
-import PDFViewer from "../common/PDFViewer";
+// Lazy load PDFViewer to avoid loading pdfjs-dist during prerendering (which breaks react-snap)
+const PDFViewer = React.lazy(() => {
+  if (navigator.userAgent === 'ReactSnap') {
+    return Promise.resolve({ 
+      default: () => (
+        <div className="p-8 text-center text-white/80">
+          <p>Preview available in full version.</p>
+          <a href="/Royal Edu hub Brochure.pdf" className="inline-block mt-4 text-blue-400 hover:text-blue-300 underline">
+            Download Brochure PDF
+          </a>
+        </div>
+      ) 
+    });
+  }
+  return import('../common/PDFViewer');
+});
 
 const BrochureSection = () => {
   const pdfPath = "/Royal Edu hub Brochure.pdf"; // exact name from public folder
@@ -45,7 +60,9 @@ const BrochureSection = () => {
             <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white/90">Royal Edu Hub Brochure (PDF)</h3>
           </div>
 
-          <PDFViewer file={pdfPath} />
+          <Suspense fallback={<div className="p-8 text-center text-white/60">Loading brochure viewer...</div>}>
+            <PDFViewer file={pdfPath} />
+          </Suspense>
         </motion.div>
       </div>
     </section>

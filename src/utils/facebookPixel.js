@@ -1,7 +1,15 @@
+import ReactPixel from 'react-facebook-pixel';
+
+const FACEBOOK_PIXEL_ID = '1384296423200471';
+
 // Facebook Pixel Utility
 export const initFacebookPixel = () => {
-  const pixelId = process.env.REACT_APP_FACEBOOK_PIXEL_ID;
   const isProd = process.env.NODE_ENV === 'production';
+
+  // Skip during react-snap prerendering
+  if (navigator.userAgent === 'ReactSnap') {
+    return;
+  }
 
   // Respect Do Not Track
   if (navigator.doNotTrack === '1') {
@@ -9,49 +17,42 @@ export const initFacebookPixel = () => {
     return;
   }
 
-  if (!pixelId) {
-    if (!isProd) {
-      console.warn('Facebook Pixel ID not found in environment variables (REACT_APP_FACEBOOK_PIXEL_ID).');
-    }
-    return;
-  }
+  const options = {
+    autoConfig: isProd, // Enable advanced matching only in production to reduce dev noise (e.g. Privacy Sandbox errors)
+    debug: !isProd,     // Enable debug mode in development
+  };
 
+  ReactPixel.init(FACEBOOK_PIXEL_ID, {}, options);
+  
+  // Explicitly set data processing options for compliance and stability
+  if (window.fbq) {
+    window.fbq('dataProcessingOptions', []);
+  }
+  
   if (!isProd) {
-    console.log('Facebook Pixel initialized in development mode (events will be logged but not sent unless configured).');
+    console.log('Facebook Pixel initialized with ID:', FACEBOOK_PIXEL_ID);
+    console.log('Facebook Pixel autoConfig:', isProd);
   }
-
-  // Standard Facebook Pixel Code
-  /* eslint-disable no-unused-expressions */
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  /* eslint-enable no-unused-expressions */
-
-  window.fbq('init', pixelId);
 };
 
 export const trackEvent = (eventName, data = {}) => {
-  if (window.fbq) {
-    window.fbq('track', eventName, data);
-  } else {
-    // Only log in development or if specifically debugging
-    if (process.env.NODE_ENV !== 'production') {
-      console.debug(`[FB Pixel] Track ${eventName}`, data);
-    }
+  // Skip during react-snap prerendering
+  if (navigator.userAgent === 'ReactSnap') return;
+
+  ReactPixel.track(eventName, data);
+  
+  if (process.env.NODE_ENV !== 'production') {
+    console.debug(`[FB Pixel] Track ${eventName}`, data);
   }
 };
 
 export const trackCustomEvent = (eventName, data = {}) => {
-  if (window.fbq) {
-    window.fbq('trackCustom', eventName, data);
-  } else {
-    if (process.env.NODE_ENV !== 'production') {
-      console.debug(`[FB Pixel] TrackCustom ${eventName}`, data);
-    }
+  // Skip during react-snap prerendering
+  if (navigator.userAgent === 'ReactSnap') return;
+
+  ReactPixel.trackCustom(eventName, data);
+  
+  if (process.env.NODE_ENV !== 'production') {
+    console.debug(`[FB Pixel] TrackCustom ${eventName}`, data);
   }
 };

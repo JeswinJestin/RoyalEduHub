@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, Suspense, lazy } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Send, BookOpen } from "lucide-react";
 import toast from "react-hot-toast";
-import Spline from "@splinetool/react-spline";
+import ErrorBoundary from "../common/ErrorBoundary";
+
 import {
   validateEmail,
   validatePhone,
@@ -13,6 +14,8 @@ import {
   prepareSecureFormData,
 } from "../../utils/security";
 import { submitFormWithFallback } from "../../services/emailService";
+
+const Spline = lazy(() => import("@splinetool/react-spline"));
 
 const Contact = () => {
   // Render Spline only when the Contact section enters the viewport
@@ -263,21 +266,32 @@ const Contact = () => {
       <div className="absolute inset-0 hidden lg:block z-30">
         <div className="absolute right-0 top-0 w-3/5 h-full overflow-visible flex items-center justify-center">
           {inView && !splineError && (
-            <Spline
-              scene="https://prod.spline.design/kKyWeZz85xetpdcW/scene.splinecode"
-              className="w-full h-full pointer-events-auto scale-90"
-              style={{
-                background: "transparent",
-                transform: "translateX(8%) translateY(0%)",
-              }}
-              onError={() => setSplineError(true)}
-            />
+            <ErrorBoundary fallback={
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="text-center p-8 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+                  <BookOpen className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                  <p className="text-white/60">Interactive scene unavailable</p>
+                </div>
+              </div>
+            }>
+              <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/20">Loading 3D Scene...</div>}>
+                <Spline
+                  scene="https://prod.spline.design/kKyWeZz85xetpdcW/scene.splinecode"
+                  className="w-full h-full pointer-events-auto scale-90"
+                  style={{
+                    background: "transparent",
+                    transform: "translateX(8%) translateY(0%)",
+                  }}
+                  onError={() => setSplineError(true)}
+                />
+              </Suspense>
+            </ErrorBoundary>
           )}
           {splineError && (
-            <div className="w-full h-full flex items-center justify-center text-gray-500">
-              <div className="text-center">
-                <BookOpen className="w-16 h-16 mx-auto mb-4 opacity-30" />
-                <p className="text-sm opacity-50">3D Background Unavailable</p>
+            <div className="w-full h-full flex items-center justify-center">
+              <div className="text-center p-8 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+                <BookOpen className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                <p className="text-white/60">Interactive scene unavailable</p>
               </div>
             </div>
           )}
@@ -337,10 +351,11 @@ const Contact = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  <label className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
+                  <label htmlFor="studentName" className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
                     Student's Name
                   </label>
                   <input
+                    id="studentName"
                     type="text"
                     name="studentName"
                     value={formData.studentName}
@@ -358,10 +373,11 @@ const Contact = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  <label className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
+                  <label htmlFor="parentName" className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
                     Parent's Name
                   </label>
                   <input
+                    id="parentName"
                     type="text"
                     name="parentName"
                     value={formData.parentName}
@@ -379,10 +395,11 @@ const Contact = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
-                  <label className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
+                  <label htmlFor="phone" className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
                     Phone Number
                   </label>
                   <input
+                    id="phone"
                     type="tel"
                     name="phone"
                     value={formData.phone}
@@ -400,10 +417,11 @@ const Contact = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.6 }}
                 >
-                  <label className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
+                  <label htmlFor="email" className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
                     Email Address
                   </label>
                   <input
+                    id="email"
                     type="email"
                     name="email"
                     value={formData.email}
@@ -421,11 +439,12 @@ const Contact = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.7 }}
                 >
-                  <label className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
+                  <label htmlFor="grade" className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
                     Student's Grade
                   </label>
                   <div className="relative">
                     <select
+                      id="grade"
                       name="grade"
                       value={formData.grade}
                       onChange={handleInputChange}
@@ -508,11 +527,12 @@ const Contact = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
-                  <label className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
+                  <label htmlFor="subject" className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
                     Subject of Interest
                   </label>
                   <div className="relative">
                     <select
+                      id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
@@ -578,10 +598,11 @@ const Contact = () => {
                   transition={{ duration: 0.6, delay: 0.9 }}
                   className="col-span-1 md:col-span-2"
                 >
-                  <label className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
+                  <label htmlFor="message" className="block text-white/80 text-xs sm:text-sm font-medium mb-1.5">
                     Additional Message (Optional)
                   </label>
                   <textarea
+                    id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
