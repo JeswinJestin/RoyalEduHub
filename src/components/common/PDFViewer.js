@@ -14,6 +14,12 @@ const PDFViewer = ({ file }) => {
     setNumPages(numPages);
   }, []);
 
+  const onDocumentLoadError = useCallback((error) => {
+    // Ignore AbortErrors as they are expected during component unmounting/remounting
+    if (error.name === 'AbortError') return;
+    console.error("PDF Load Error:", error);
+  }, []);
+
   useEffect(() => {
     const measure = () => {
       if (viewerRef.current) {
@@ -78,8 +84,9 @@ const PDFViewer = ({ file }) => {
         <Document
           file={file}
           onLoadSuccess={onDocumentLoadSuccess}
+          onLoadError={onDocumentLoadError}
           loading={<div className="p-4 text-white/80">Loading brochure…</div>}
-          error={<div className="p-4 text-red-300">Failed to load PDF.</div>}
+          error={<div className="p-4 text-red-300">Failed to load PDF. Please try downloading it instead.</div>}
         >
           {Array.from({ length: numPages || 0 }, (_, i) => (
             <Page

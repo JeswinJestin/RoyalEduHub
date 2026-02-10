@@ -7,7 +7,7 @@ const PDFViewer = React.lazy(() => {
       default: () => (
         <div className="p-8 text-center text-white/80">
           <p>Preview available in full version.</p>
-          <a href="/Royal Edu hub Brochure.pdf" className="inline-block mt-4 text-blue-400 hover:text-blue-300 underline">
+          <a href="/Royal_Edu_Hub_Brochure.pdf" className="inline-block mt-4 text-blue-400 hover:text-blue-300 underline">
             Download Brochure PDF
           </a>
         </div>
@@ -18,7 +18,7 @@ const PDFViewer = React.lazy(() => {
 });
 
 const BrochureSection = () => {
-  const pdfPath = "/Royal Edu hub Brochure.pdf"; // exact name from public folder
+  const pdfPath = "/Royal_Edu_Hub_Brochure.pdf"; // exact name from public folder
   return (
     <section
       id="brochure"

@@ -3,19 +3,14 @@
   "name": "Royal Edu Hub - Your Gateway to Global Success",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "RoyalEduHub_Favicon64px.png",
+      "sizes": "64x64",
+      "type": "image/png"
     },
     {
       "src": "royal-edu-hub-logo.webp",
       "type": "image/webp",
-      "sizes": "192x192"
-    },
-    {
-      "src": "royal-edu-hub-logo.webp",
-      "type": "image/webp",
-      "sizes": "512x512"
+      "sizes": "192x192 512x512"
     }
   ],
   "start_url": ".",
