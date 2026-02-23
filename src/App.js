@@ -17,6 +17,7 @@ import './styles/globals.css';
 
 import SEOManager from './utils/seo';
 import FacebookPixelTracker from './components/common/FacebookPixelTracker';
+import ErrorBoundary from './components/common/ErrorBoundary';
 
 // Lazy load DotLottieReact to avoid WASM errors during react-snap crawl
 const DotLottieReact = React.lazy(() => {
@@ -212,7 +213,9 @@ function App() {
         <RoutePreloader />
         <SEOManager />
         <FacebookPixelTracker />
-        <RoutedContent />
+        <ErrorBoundary>
+          <RoutedContent />
+        </ErrorBoundary>
       </SmoothScroll>
       <Toaster position="top-right" />
       <Analytics />

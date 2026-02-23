@@ -263,7 +263,7 @@ const Contact = () => {
       </div>
 
       {/* 3D Character Background - Show entire design */}
-      <div className="absolute inset-0 hidden lg:block z-30">
+      <div className="absolute inset-0 hidden lg:block z-30 pointer-events-none">
         <div className="absolute right-0 top-0 w-3/5 h-full overflow-visible flex items-center justify-center">
           {inView && !splineError && (
             <ErrorBoundary fallback={
@@ -277,7 +277,7 @@ const Contact = () => {
               <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/20">Loading 3D Scene...</div>}>
                 <Spline
                   scene="https://prod.spline.design/kKyWeZz85xetpdcW/scene.splinecode"
-                  className="w-full h-full pointer-events-auto scale-90"
+                  className="w-full h-full scale-90"
                   style={{
                     background: "transparent",
                     transform: "translateX(8%) translateY(0%)",
@@ -301,7 +301,7 @@ const Contact = () => {
       </div>
 
       {/* Mid-section - transparent background; allow pointer-through except form */}
-      <div className="relative z-20 py-6 md:py-8 pointer-events-none">
+      <div className="relative z-20 py-6 md:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main Heading - Always Centered */}
           <motion.div
