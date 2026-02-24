@@ -15,7 +15,13 @@ import {
 } from "../../utils/security";
 import { submitFormWithFallback } from "../../services/emailService";
 
-const Spline = lazy(() => import("@splinetool/react-spline"));
+// Lazy load Spline to avoid WASM errors during react-snap crawl and improve initial load
+const Spline = lazy(() => {
+  if (navigator.userAgent === 'ReactSnap') {
+    return Promise.resolve({ default: () => null });
+  }
+  return import("@splinetool/react-spline");
+});
 
 const Contact = () => {
   // Render Spline only when the Contact section enters the viewport

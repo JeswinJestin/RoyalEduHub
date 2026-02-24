@@ -22,16 +22,20 @@ export const initFacebookPixel = () => {
     debug: !isProd,     // Enable debug mode in development
   };
 
-  ReactPixel.init(FACEBOOK_PIXEL_ID, {}, options);
-  
-  // Explicitly set data processing options for compliance and stability
-  if (window.fbq) {
-    window.fbq('dataProcessingOptions', []);
-  }
-  
-  if (!isProd) {
-    console.log('Facebook Pixel initialized with ID:', FACEBOOK_PIXEL_ID);
-    console.log('Facebook Pixel autoConfig:', isProd);
+  try {
+    ReactPixel.init(FACEBOOK_PIXEL_ID, {}, options);
+    
+    // Explicitly set data processing options for compliance and stability
+    if (window.fbq) {
+      window.fbq('dataProcessingOptions', []);
+    }
+    
+    if (!isProd) {
+      console.log('Facebook Pixel initialized with ID:', FACEBOOK_PIXEL_ID);
+      console.log('Facebook Pixel autoConfig:', isProd);
+    }
+  } catch (error) {
+    console.warn('Facebook Pixel initialization failed:', error);
   }
 };
 
@@ -39,10 +43,14 @@ export const trackEvent = (eventName, data = {}) => {
   // Skip during react-snap prerendering
   if (navigator.userAgent === 'ReactSnap') return;
 
-  ReactPixel.track(eventName, data);
-  
-  if (process.env.NODE_ENV !== 'production') {
-    console.debug(`[FB Pixel] Track ${eventName}`, data);
+  try {
+    ReactPixel.track(eventName, data);
+    
+    if (process.env.NODE_ENV !== 'production') {
+      console.debug(`[FB Pixel] Track ${eventName}`, data);
+    }
+  } catch (error) {
+    console.warn('Facebook Pixel tracking failed:', error);
   }
 };
 
@@ -50,9 +58,13 @@ export const trackCustomEvent = (eventName, data = {}) => {
   // Skip during react-snap prerendering
   if (navigator.userAgent === 'ReactSnap') return;
 
-  ReactPixel.trackCustom(eventName, data);
-  
-  if (process.env.NODE_ENV !== 'production') {
-    console.debug(`[FB Pixel] TrackCustom ${eventName}`, data);
+  try {
+    ReactPixel.trackCustom(eventName, data);
+    
+    if (process.env.NODE_ENV !== 'production') {
+      console.debug(`[FB Pixel] TrackCustom ${eventName}`, data);
+    }
+  } catch (error) {
+    console.warn('Facebook Pixel custom tracking failed:', error);
   }
 };

@@ -19,8 +19,13 @@
     },
     {
       "src": "RoyalEduHub_Favicon64px.png",
-      "sizes": "64x64",
+      "sizes": "48x48 64x64",
       "type": "image/png"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     },
     {
       "src": "apple-touch-icon.png",
